@@ -1,0 +1,717 @@
+/* -----IMPORTAÇÃO DE FONTE----- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* -----fim da importação de fonte----- */
+
+
+/* -----CONFIGURAÇÃO GLOBAL DO SITE----- */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+/* -----fim da configuração global do site----- */
+
+
+/* -----CONFIGURAÇÃO BODY----- */
+body{
+    color: #fff;
+    background-color: #800000;
+}
+/* -----fim configuração body----- */
+
+
+/* -----CONFIGURAÇÃO DO MENU DO SITE----- */
+.navigation{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    width: 100%;
+    background: #fff;
+    transition: all 0.5s;
+    position: fixed;
+    
+}
+.navigation .logo{
+    color: #d63a25;
+    font-size: 1.7rem;
+    font-weight: 600;
+    display: flex; /* Adicionado */
+    align-items: center; /* Adicionado */
+}
+.logo span{
+    color: #1e1c2a;
+}
+.navigation ul {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+.navigation ul li {
+    position: relative;
+}
+.navigation ul li a{
+    color: #1e1c2a;
+    font-size: 17px;
+    font-weight: 500;
+    transition: all 0.5s;
+}
+.navigation ul li a:hover{
+    color: #d63a25;
+}
+.navigation i{
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+.menu{
+    cursor: pointer;
+    display: none;
+}
+.menu .bar{
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 3px;
+    background: #1e1c2a;
+    margin: 5px auto;
+    transition: all 0.3s;
+}
+/* -----sub-menu----- */
+.navigation ul ul {
+    display: none;
+    position: absolute;
+}
+
+.navigation ul li:hover ul {
+    display: block;
+}
+
+.navigation ul ul li a {
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.img-menu{
+    width: 5rem;
+    height: 5rem;
+}
+
+/* -----fim configuração menu----- */
+
+
+/* -----CONFIGURAÇÃO DA HOME DO SITE----- */
+.home{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10%;
+}
+.home-text{
+    max-width: 37rem;
+    padding-top: 30px;
+}
+.home-text .text-h4{
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-bottom: 3rem;
+}
+.home-text .text-h1{
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    line-height: 4rem;
+}
+.home-text p{
+    margin-bottom: 4rem;
+}
+.home-btn{
+    padding: 15px 45px;
+    background: #FFD700;
+    color: #1e1c2a;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: all 0.5s;
+}
+.home-btn:hover{
+    background: #1e1c2a;
+    color: #FFD700;
+}
+.home-img img{
+    width: 100%;
+}
+/* -----fim configuração home site----- */
+
+
+/* -----CONFIGURAÇÃO DA SOBRE NÓS DO SITE----- */
+.about-us {
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.text-about {
+    font-family: 'Poppins', sans-serif;
+}
+
+.divisao {
+    padding: 50px;
+}
+
+.img-about>img {
+    width: 40rem;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.text-about {
+    color: rgb(255, 255, 255);
+}
+
+.text-about>h1 {
+    color: #ffffff;
+}
+
+.about-text1 {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.text-about h1 {
+    text-transform: capitalize;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+    z-index: -50;
+}
+.text-about h1:before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: #FFD700;
+    bottom: 0;
+}
+
+@media only screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+      /* text-align: center; */
+      width: 90%;
+    }
+/* 
+    .text-about{
+        padding: 20px;
+    } */
+
+    .img-about {
+        text-align: center;
+         /* Ajuste conforme necessário */
+    }
+  
+    .divisao{
+        padding: 30px;
+    }
+
+    .img-about > img {
+        width: 80%; /* Ajuste conforme necessário */
+    }
+  }
+
+/* -----fim configuração sobre nós site----- */
+
+
+/* -----CONFIGURAÇÃO DO CARDAPIO DO SITE----- */
+.cardapio{
+    width: 90%; /* Mudança: Use porcentagem em vez de pixels */
+    max-width: 1170px; /* Adicionado: Limita a largura máxima */
+    margin: 100px auto;
+    color: white;
+    position: relative;
+    z-index: -5;
+    font-family: 'Poppins', sans-serif; 
+    
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.section-title h2 {
+    text-transform: capitalize;
+    font-size: 35px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+.section-title h2:before {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: #FFD700;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.menus {
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.menu-column {
+    width: 31%;
+}
+.lanches{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dividir em duas colunas em telas grandes */
+    grid-gap: 20px; /* Espaçamento entre os elementos */
+    margin-bottom: 3rem;
+}
+.cardapio h4 {
+    text-transform: capitalize;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+.cardapio h4:before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 2px;
+    background-color: #FFD700;
+    bottom: 0;
+}
+.single-menu {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+.single-menu img {
+    border-radius: 50%;
+    max-width: 110px;
+    border: 1px dashed #ddd;
+    padding: 3px;
+    margin-right: 15px;
+    transition: .3s;
+}
+.single-menu:hover img {
+    transform: rotate(360deg);
+}
+.single-menu .menu-content h5 {
+    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 500;
+    /* border-bottom: 1px dashed #ffffff;
+    padding-bottom: 5px;
+    margin-bottom: 10px; */
+    color: #FFD700;
+}
+.preco {
+    color: white!important;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 22px;
+    border-bottom: 1px dashed #ffffff;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+/* -----fim configuração cardapio site----- */
+
+
+
+/* -----CONFIGURAÇÃO DO FOOTER DO SITE----- */
+footer {
+    width: 100%;
+    color: #1e1c2a
+}
+
+.footer-link {
+    text-decoration: none;
+}
+
+#footer_content {
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 3rem 3.5rem;
+}
+
+#footer_contacts h1 {
+    margin-bottom: 0.75rem;
+}
+
+#footer_social_media {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+} 
+
+#footer_social_media .footer-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: #ffffff;
+    border-radius: 50%;
+    transition: all 0.4s;
+}
+
+#footer_social_media .footer-link i {
+    font-size: 1.25rem;    
+}
+
+#footer_social_media .footer-link:hover {
+    opacity: 0.8;
+}
+
+#instagram {
+    background: linear-gradient(#7f37c9, #ff2992, #ff9807);
+}
+
+#facebook {
+    background-color: #4267b3;
+}
+
+#whatsapp {
+    background-color: #25d366;
+}
+
+.footer-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    list-style: none;
+    align-items:flex-end;
+}
+
+.footer-list .footer-link {
+    color: #1e1c2a;
+    transition: all 0.4s;
+}
+
+.footer-list .footer-link:hover {
+    color: #800000;
+}
+
+#footer_copyright {
+    display: flex;
+    justify-content: center;
+    background-color: #800000;
+    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-weight: 100;
+    color: #f5f5f5;
+}
+/* -----fim configuração footer site----- */
+
+
+.whatsapp_float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+  }
+  .whatsapp-icon {
+    margin-top: 16px;
+  }
+
+  /* for mobile */
+  @media screen and (max-width: 767px){
+    .whatsapp-icon {
+      margin-top: 15px;
+    }
+    .whatsapp_float {
+      width: 60px;
+      height: 60px;
+      bottom: 30px;
+      right: 15px;
+      font-size: 33px;
+    }
+  }
+
+/* -------CONFIGURAÇÃO DE TAMANHOS PARA SITE RESPONSIVO------ */
+@media (max-width:785px) {
+    .navigation{
+        padding: 18px 20px;
+    }
+    .menu{
+        display: block;
+    }
+    .menu.ativo .bar:nth-child(1){
+        transform:  translateY(8px) rotate(45deg);
+    }
+    .menu.ativo .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu.ativo .bar:nth-child(3){
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .nav-menu {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        background: #fff;
+        gap: -10px;
+        transition: 0.3s;
+    }
+    .nav-menu.ativo{
+        right: 0;
+    }
+    .nav-item{
+        margin: 16px 0;
+    }
+    nav ul li a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+      }
+      
+      nav ul ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        background-color: #fff;
+        z-index: 999; 
+      }
+      
+      nav ul ul li a {
+        padding: 10px;
+      }
+      
+      nav ul li:hover > ul {
+        display: block;
+      }
+      
+      nav ul ul {
+        width: 100%;
+      }
+    /*main*/
+    .home{
+        padding: 100px 2%;
+        flex-direction: column;
+        text-align: center;
+        overflow: hidden;
+        gap: 5rem;
+    }
+    .home .text-h4{
+        font-size: 25px;
+    }
+    .home .text-h1{
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+    .home p{
+        font-size: 15px;
+    }
+    .home-img{
+        width: 80%;
+    }
+
+    #footer_content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    #footer_content {
+        grid-template-columns: repeat(1, 1fr);
+        padding: 3rem 2rem;
+    }
+    .footer-list{
+        align-items:flex-start;
+    }
+}
+
+@media (max-width: 785px) {
+    .menu-column {
+        width: 48%; /* Reduzindo a largura das colunas */
+        margin-bottom: 30px; /* Adicionando margem inferior */
+    }
+
+    .section-title h2 {
+        font-size: 28px; /* Reduzindo o tamanho do título */
+    }
+
+    .single-menu img {
+        max-width: 50%; /* Reduzindo o tamanho das imagens */
+    }
+
+    .menu-column h4 {
+        font-size: 20px; /* Reduzindo o tamanho dos cabeçalhos */
+    }
+
+    .section-title p {
+        font-size: 14px; /* Reduzindo o tamanho do parágrafo */
+    }
+    .lanches{
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+}
+
+@media (min-width: 768px) {
+    .lanches {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas maiores */
+    }
+}
+/* -----fim configuração site responsivo----- */
+
+
+ /* CSS Adicionado */
+        body {
+            background-color: #800000; /* Vermelho */
+            color: black; /* Mudança para texto preto */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            
+        }
+        
+        .form-table {
+            background-color: rgb(141, 141, 141);
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%; /* Ajuste a largura conforme necessário */
+            max-width: 500px; /* Defina a largura máxima conforme necessário */
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; /* Inclui a largura do preenchimento e da borda na largura total */
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+    }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box; 
+        }
+
+        /* Botão centralizado */
+        .btn-center {
+            text-align: center;
+        }
+
+        /* Botão estilizado */
+        .btn {
+            padding: 10px 20px;
+            background-color: #fff200; /* Azul */
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #ffb700; /* Azul mais escuro */
+        }
+
+
+
+        .jBklft {
+            width: 100%;
+            height: 179px;
+            border-radius: 1rem;
+            padding: 1.5rem 1.5rem 1rem;
+            background-color: rgb(24, 24, 24);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.4s ease-in-out 0s;
+            border: 1px solid rgb(34, 34, 34);
+            color: rgb(245, 245, 245);
+            font-family: Roboto, sans-serif;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .jBklft .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .jBklft .card-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .jBklft .user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .jBklft .user-info span:nth-of-type(1) {
+            font-weight: 500;
+        }
+
+        @media (min-width: 580px) {
+            .jBklft {
+                width: 70%;
+                
+            }
+        }

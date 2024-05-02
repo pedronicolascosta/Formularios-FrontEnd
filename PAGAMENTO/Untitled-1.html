@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+       
+    </style>
+    <title>Água na Boca - Home</title>
+</head>
+<body>
+  <header>
+    <nav class="navigation">
+      <a href="#" class="logo"><img class="img-menu" src="img/logo.png" alt="">Água na Boca!</a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#">Cardápio</a>
+          <ul>
+            <li class="nav-item"><a href="#">Lanches</a></li>
+            <li class="nav-item"><a href="#">Hot Dog</a></li>
+            <li class="nav-item"><a href="#">Porções</a></li>
+            <li class="nav-item"><a href="#">Bebidas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#">Sobre nós</a></li>
+        <i class='bx bx-search'></i>
+      </ul>
+      <div class="menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <form class="form-table">
+        <h2>ADICIONAR CARTÃO DÉBITO/CRÉDITO</h2>
+        <div class="sc-eTNRI jBklft">
+          <div class="card-header">
+            <span>XXXXXXX</span>
+            <img src="MasterCard-B9pwr5yQ.svg" width="47" height="47" alt="Imagem da bandeira do cartão de crédito">
+          </div>
+          <div class="card-footer">
+            <div class="user-info">
+              <span class="nome">Renan Vilela</span>
+              <span class="numero">**** **** **** ****</span>
+            </div>
+            <span class="validade">**/**</span>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="nome">Método de pagamento:</label>
+            <p><input type="radio" id="nome" name="nome" value="Débito"> Débito</p>
+            <p><input type="radio" id="nome" name="nome" value="Crédito"> Crédito</p>
+        </div>
+        <div class="form-group">
+          <label>Nome no cartão:</label>
+          <input type="text" id="nome" placeholder="0000 0000 0000 0000">
+      </div>
+        <div class="form-group">
+            <label>Número do cartão:</label>
+            <input type="number" id="numero" placeholder="0000 0000 0000 0000">
+        </div>
+        <div class="form-group">
+            <label for="validade">Validade:</label>
+            <input type="date" id="validade" placeholder="Digite sua data de nascimento">
+        </div>
+        <div class="form-group">
+          <label>Código de Segurança:</label>
+          <input type="number" id="ccv" placeholder="000">
+        </div>
+        <!-- Botão Cadastrar -->
+        <div class="form-group btn-center">
+            <button type="submit" class="btn">Cadastrar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div id="footer_content">
+      <div id="footer_contacts">
+        <h1>Água na Boca!</h1>
+        <p>Aqui você encontra lanches feitos com muito carinho!</p>
+
+        <div id="footer_social_media">
+          <a href="#" class="footer-link" id="instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+        
+      <ul class="footer-list">
+        <li>
+          <h3>Cardápio</h3>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Lanches</a>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Porções</a>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Bebidas</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="footer_copyright">
+        &#169
+        2024 all rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+            // Quando qualquer botão de rádio for clicado
+            $('input[name="nome"]').click(function() {
+                // Obtenha o valor do botão de rádio selecionado
+                var metodoPagamento = $('input[name="nome"]:checked').val();
+
+                // Atualize o conteúdo do <span> na div .card-header
+                $('.card-header span').text(metodoPagamento);
+            });
+        });
+
+        function atualizarCampos() {
+            // Obtenha os valores digitados nos campos de entrada
+            var nome = document.getElementById('nome').value;
+            var numero = document.getElementById('numero').value;
+            var validade = document.getElementById('validade').value;
+
+            // Atualize os campos dentro da div .sc-eTNRI.jBklft
+            document.querySelector('.sc-eTNRI.jBklft .nome').textContent = nome;
+            document.querySelector('.sc-eTNRI.jBklft .numero').textContent = '**** **** **** ' + numero.slice(-4);
+            document.querySelector('.sc-eTNRI.jBklft .validade').textContent = validade;
+        }
+  </script>
+</body>
+</html>
