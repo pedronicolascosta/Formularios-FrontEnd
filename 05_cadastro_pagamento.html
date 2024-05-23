@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-       
+       .error-message {
+           color: red;
+           font-size: 0.9em;
+           margin-top: 5px;
+       }
     </style>
     <title>Água na Boca - Home</title>
 </head>
@@ -57,26 +61,33 @@
                 <label for="metodoPagamento">Método de pagamento:</label>
                 <p><input type="radio" id="debito" name="metodoPagamento" value="Débito"> Débito</p>
                 <p><input type="radio" id="credito" name="metodoPagamento" value="Crédito"> Crédito</p>
+                <p class="error-message" id="metodoPagamentoError" style="display:none;">Campo obrigatório</p>
             </div>
             <div class="form-group">
                 <label>Nome no cartão:</label>
-                <input type="text" id="nomeCartao" placeholder="0000 0000 0000 0000">
+                <input type="text" id="nomeCartao" placeholder="Nome no cartão">
+                <p class="error-message" id="nomeCartaoError" style="display:none;">Campo obrigatório</p>
             </div>
             <div class="form-group">
                 <label>Número do cartão:</label>
-                <input type="number" id="numeroCartao" placeholder="0000 0000 0000 0000">
+                <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" oninput="formatarNumeroCartao(this)">
+                <p class="error-message" id="numeroCartaoError" style="display:none;">Campo obrigatório</p>
+                <p class="error-message" id="numeroCartaoInvalidoError" style="display:none;">Número do cartão inválido</p>
             </div>
             <div class="form-group">
               <label for="validadeCartao">Validade (MM/YYYY):</label>
               <input type="text" id="validadeCartao" placeholder="MM/YYYY" maxlength="7" oninput="formatarValidade(this)">
+              <p class="error-message" id="validadeCartaoError" style="display:none;">Campo obrigatório</p>
             </div>
             <div class="form-group">
               <label>Código de Segurança:</label>
               <input type="text" id="ccv" placeholder="000" oninput="limitarTamanhoCCV(this)">
+              <p class="error-message" id="ccvError" style="display:none;">Campo obrigatório</p>
             </div>
             <!-- Botão Cadastrar -->
             <div class="form-group btn-center">
-                <button type="button" class="btn" onclick="atualizarCampos()">Cadastrar</button>
+                <button type="button" class="btn" onclick="verificarCampos()">Cadastrar</button>
+                <p class="success-message" id="cartaoCadastradoMessage" style="display: none;">Cartão cadastrado</p>
             </div>
           </form>
       </div>
@@ -128,58 +139,171 @@
 
   <script>
     $(document).ready(function() {
-      // Quando qualquer botão de rádio for clicado
         $('input[name="metodoPagamento"]').click(function() {
-          // Obtenha o valor do botão de rádio selecionado
-          var metodoPagamento = $('input[name="metodoPagamento"]:checked').val();
+            var metodoPagamento = $('input[name="metodoPagamento"]:checked').val();
+            $('.card-header span').text(metodoPagamento);
+            $('#metodoPagamentoError').hide();
+        });
 
-          // Atualize o conteúdo do <span> na div .card-header
-          $('.card-header span').text(metodoPagamento);
-          });
+        $('#nomeCartao').on('input', function() {
+            if ($(this).val() !== '') {
+                $('#nomeCartaoError').hide();
+            }
+        });
+
+        $('#numeroCartao').on('input', function() {
+            formatarNumeroCartao(this);
+            if ($(this).val().replace(/\D/g, '').length >= 16) {
+                $('#numeroCartaoError').hide();
+                $('#numeroCartaoInvalidoError').hide();
+            }
+        });
+
+        $('#validadeCartao').on('input', function() {
+            formatarValidade(this);
+            if ($(this).val() !== '') {
+                $('#validadeCartaoError').hide();
+            }
+        });
+
+        $('#ccv').on('input', function() {
+            limitarTamanhoCCV(this);
+            if ($(this).val() !== '') {
+                $('#ccvError').hide();
+            }
+        });
     });
 
     function formatarValidade(input) {
-      // Remove caracteres não numéricos
       var valor = input.value.replace(/\D/g, '');
-
-      // Adiciona a barra (/) após o segundo caractere
       if (valor.length > 2) {
           valor = valor.substring(0, 2) + '/' + valor.substring(2);
       }
-
-      // Limita o ano a 4 dígitos
       if (valor.length > 7) {
           valor = valor.substring(0, 7);
       }
-
-      // Atualiza o valor do campo
       input.value = valor;
     }
 
     function limitarTamanhoCCV(input) {
       if (input.value.length > 3) {
-          input.value = input.value.slice(0, 3); // Limita o tamanho a 3 dígitos
+          input.value = input.value.slice(0, 3);
       }
     }
 
-    document.getElementById('nomeCartao').addEventListener('input', atualizarCampos);
-    document.getElementById('numeroCartao').addEventListener('input', atualizarCampos);
-    document.getElementById('validadeCartao').addEventListener('input', atualizarCampos);
-    document.getElementById('ccv').addEventListener('input', atualizarCampos);
-
-    function atualizarCampos() {
-        var nome = document.getElementById('nomeCartao').value;
-        var numero = document.getElementById('numeroCartao').value;
-        var validade = document.getElementById('validadeCartao').value;
-        var ccv = document.getElementById('ccv').value;
-
-        document.querySelector('.sc-eTNRI.jBklft .nome').textContent = nome;
-        document.querySelector('.sc-eTNRI.jBklft .numero').textContent = '**** **** **** ' + numero.slice(-4);
-        document.querySelector('.sc-eTNRI.jBklft .validade').textContent = validade;
-        // Se desejar, você pode atualizar também o CCV aqui
+    function formatarNumeroCartao(input) {
+      var valor = input.value.replace(/\D/g, '');
+      var formattedValue = valor.replace(/(.{4})/g, '$1 ').trim();
+      if (formattedValue.length > 19) {
+          formattedValue = formattedValue.slice(0, 19);
+      }
+      input.value = formattedValue;
     }
 
+    function atualizarCampos() {
+      var nome = document.getElementById('nomeCartao').value;
+        var numero = document.getElementById('numeroCartao').value.replace(/\D/g, ''); // Remover espaços para obter apenas os dígitos
+        var validade = document.getElementById('validadeCartao').value;
+        var ccv = document.getElementById('ccv').value;
+        Id('validadeCartao').value;
+            var ccv = document.getElementById('ccv').value;
 
+            document.querySelector('.sc-eTNRI.jBklft .nome').textContent = nome;
+            document.querySelector('.sc-eTNRI.jBklft .numero').textContent = '**** **** **** ' + numero.slice(-4);
+            document.querySelector('.sc-eTNRI.jBklft .validade').textContent = validade;
+        }
+
+        function verificarCampos() {
+    var metodoPagamento = document.querySelector('input[name="metodoPagamento"]:checked');
+    var nome = document.getElementById('nomeCartao').value;
+    var numero = document.getElementById('numeroCartao').value.replace(/\D/g, ''); // Remover espaços para obter apenas os dígitos
+    var validade = document.getElementById('validadeCartao').value;
+    var ccv = document.getElementById('ccv').value;
+
+    var todosPreenchidos = true;
+
+    // Verificar método de pagamento
+    if (!metodoPagamento) {
+        document.getElementById('metodoPagamentoError').style.display = 'block';
+        todosPreenchidos = false;
+    } else {
+        document.getElementById('metodoPagamentoError').style.display = 'none';
+    }
+
+    // Verificar nome no cartão
+    if (nome === '') {
+        document.getElementById('nomeCartaoError').style.display = 'block';
+        todosPreenchidos = false;
+    } else {
+        document.getElementById('nomeCartaoError').style.display = 'none';
+    }
+
+    // Verificar número do cartão
+    if (numero === '') {
+        document.getElementById('numeroCartaoError').style.display = 'block';
+        document.getElementById('numeroCartaoInvalidoError').style.display = 'none';
+        todosPreenchidos = false;
+    } else if (numero.length < 16) {
+        document.getElementById('numeroCartaoError').style.display = 'none';
+        document.getElementById('numeroCartaoInvalidoError').style.display = 'block';
+        todosPreenchidos = false;
+    } else {
+        document.getElementById('numeroCartaoError').style.display = 'none';
+        document.getElementById('numeroCartaoInvalidoError').style.display = 'none';
+    }
+
+    // Verificar validade do cartão
+    if (validade === '') {
+        document.getElementById('validadeCartaoError').style.display = 'block';
+        todosPreenchidos = false;
+    } else {
+        document.getElementById('validadeCartaoError').style.display = 'none';
+    }
+
+    // Verificar código de segurança
+    if (ccv === '') {
+        document.getElementById('ccvError').style.display = 'block';
+        todosPreenchidos = false;
+    } else {
+        document.getElementById('ccvError').style.display = 'none';
+    }
+
+    // Se todos os campos estiverem preenchidos corretamente
+    if (todosPreenchidos) {
+        // Atualiza os campos do cartão
+        atualizarCampos();
+
+        // Mostra a mensagem de sucesso
+        $('#cartaoCadastradoMessage').show();
+
+        // Limpa os campos do formulário
+        $('input[type="text"]').val('');
+        $('input[type="number"]').val('');
+        $('input[type="radio"]').prop('checked', false);
+
+        // Esconde todas as mensagens de erro
+        $('.error-message').hide();
+    } else {
+        // Esconde a mensagem de sucesso se houver algum erro
+        $('#cartaoCadastradoMessage').hide();
+    }
+}
+
+    $(document).ready(function() {
+        // Verificar automaticamente campos ao carregar a página
+        $('input[type="text"]').each(function() {
+            if ($(this).val() !== '') {
+                $(this).siblings('.error-message').hide();
+            }
+        });
+
+        // Verificar campos ao digitar
+        $('input[type="text"]').on('input', function() {
+            if ($(this).val() !== '') {
+                $(this).siblings('.error-message').hide();
+            }
+        });
+    });
   </script>
 </body>
 </html>

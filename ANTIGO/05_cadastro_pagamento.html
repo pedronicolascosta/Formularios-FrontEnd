@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+       
+    </style>
+    <title>Água na Boca - Home</title>
+</head>
+<body>
+  <header>
+    <nav class="navigation">
+      <a href="#" class="logo"><img class="img-menu" src="img/logo.png" alt="">Água na Boca!</a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#">Home</a></li>
+        <li class="nav-item"><a href="#">Cardápio</a>
+          <ul>
+            <li class="nav-item"><a href="#">Lanches</a></li>
+            <li class="nav-item"><a href="#">Hot Dog</a></li>
+            <li class="nav-item"><a href="#">Porções</a></li>
+            <li class="nav-item"><a href="#">Bebidas</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#">Sobre nós</a></li>
+        <i class='bx bx-search'></i>
+      </ul>
+      <div class="menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+        <form class="form-table">
+            <h2>ADICIONAR CARTÃO DÉBITO/CRÉDITO</h2>
+            <div class="sc-eTNRI jBklft">
+                <div class="card-header">
+                    <span>XXXXXXX</span>
+                    <img src="img/MasterCard.svg" width="47" height="47" alt="Imagem da bandeira do cartão de crédito">
+                </div>
+                <div class="card-footer">
+                    <div class="user-info">
+                        <span class="nome">XXXXXX XXXXXX XXXX</span>
+                        <span class="numero">**** **** **** ****</span>
+                    </div>
+                    <span class="validade">**/****</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="metodoPagamento">Método de pagamento:</label>
+                <p><input type="radio" id="debito" name="metodoPagamento" value="Débito"> Débito</p>
+                <p><input type="radio" id="credito" name="metodoPagamento" value="Crédito"> Crédito</p>
+            </div>
+            <div class="form-group">
+                <label>Nome no cartão:</label>
+                <input type="text" id="nomeCartao" placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="form-group">
+                <label>Número do cartão:</label>
+                <input type="number" id="numeroCartao" placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="form-group">
+              <label for="validadeCartao">Validade (MM/YYYY):</label>
+              <input type="text" id="validadeCartao" placeholder="MM/YYYY" maxlength="7" oninput="formatarValidade(this)">
+            </div>
+            <div class="form-group">
+              <label>Código de Segurança:</label>
+              <input type="text" id="ccv" placeholder="000" oninput="limitarTamanhoCCV(this)">
+            </div>
+            <!-- Botão Cadastrar -->
+            <div class="form-group btn-center">
+                <button type="button" class="btn" onclick="atualizarCampos()">Cadastrar</button>
+            </div>
+          </form>
+      </div>
+  </main>
+
+
+  <footer>
+    <div id="footer_content">
+      <div id="footer_contacts">
+        <h1>Água na Boca!</h1>
+        <p>Aqui você encontra lanches feitos com muito carinho!</p>
+
+        <div id="footer_social_media">
+          <a href="#" class="footer-link" id="instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+
+          <a href="#" class="footer-link" id="whatsapp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+        
+      <ul class="footer-list">
+        <li>
+          <h3>Cardápio</h3>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Lanches</a>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Porções</a>
+        </li>
+        <li>
+          <a href="#" class="footer-link">Bebidas</a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="footer_copyright">
+        &#169
+        2024 all rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      // Quando qualquer botão de rádio for clicado
+        $('input[name="metodoPagamento"]').click(function() {
+          // Obtenha o valor do botão de rádio selecionado
+          var metodoPagamento = $('input[name="metodoPagamento"]:checked').val();
+
+          // Atualize o conteúdo do <span> na div .card-header
+          $('.card-header span').text(metodoPagamento);
+          });
+    });
+
+    function formatarValidade(input) {
+      // Remove caracteres não numéricos
+      var valor = input.value.replace(/\D/g, '');
+
+      // Adiciona a barra (/) após o segundo caractere
+      if (valor.length > 2) {
+          valor = valor.substring(0, 2) + '/' + valor.substring(2);
+      }
+
+      // Limita o ano a 4 dígitos
+      if (valor.length > 7) {
+          valor = valor.substring(0, 7);
+      }
+
+      // Atualiza o valor do campo
+      input.value = valor;
+    }
+
+    function limitarTamanhoCCV(input) {
+      if (input.value.length > 3) {
+          input.value = input.value.slice(0, 3); // Limita o tamanho a 3 dígitos
+      }
+    }
+
+    document.getElementById('nomeCartao').addEventListener('input', atualizarCampos);
+    document.getElementById('numeroCartao').addEventListener('input', atualizarCampos);
+    document.getElementById('validadeCartao').addEventListener('input', atualizarCampos);
+    document.getElementById('ccv').addEventListener('input', atualizarCampos);
+
+    function atualizarCampos() {
+        var nome = document.getElementById('nomeCartao').value;
+        var numero = document.getElementById('numeroCartao').value;
+        var validade = document.getElementById('validadeCartao').value;
+        var ccv = document.getElementById('ccv').value;
+
+        document.querySelector('.sc-eTNRI.jBklft .nome').textContent = nome;
+        document.querySelector('.sc-eTNRI.jBklft .numero').textContent = '**** **** **** ' + numero.slice(-4);
+        document.querySelector('.sc-eTNRI.jBklft .validade').textContent = validade;
+        // Se desejar, você pode atualizar também o CCV aqui
+    }
+
+
+  </script>
+</body>
+</html>
