@@ -115,11 +115,16 @@ footer {
     text-decoration: none;
 }
 
+.cartao-footer{
+    margin-top: 100px;
+}
+
 #footer_content {
     background-color: #fff;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 3rem 3.5rem;
+   
 }
 
 #footer_contacts h1 {
@@ -289,6 +294,11 @@ footer {
             
         }
         
+      .container-cartao{
+          padding: 15%;
+          margin-top: 10%;
+      }
+
         .form-table {
             background:rgba(0, 0, 0, 0.35);
             box-shadow: 0 8px 32px 0 rgba(104, 221, 189, 0.1);
@@ -370,7 +380,9 @@ footer {
             background-color: #ffb700; /* Azul mais escuro */
         }
 
-
+.form-endereco{
+    margin-top: 100px;
+}
 
         .jBklft {
             width: 100%;

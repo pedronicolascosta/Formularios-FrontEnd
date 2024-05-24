@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <style>
        
     </style>
@@ -38,11 +38,11 @@
 
   <main>
     <div class="container">
-      <form class="form-table">
+      <form class="form-table" form id="myForm" action="04_cadastro_endereco.html" onsubmit="return validateForm()" method="get">
         <h2>Cadastro de Contato</h2>
         <div class="form-group">
           <label>Número de telefone:</label>
-          <input type="text" id="nome" placeholder="(XX) XXXXX-XXXX">
+          <input type="text" id="numero" placeholder="(XX) XXXXX-XXXX">
         </div>
         <div class="form-group">
             <p><input type="checkbox" id="nome" name="nome" value="Débito"> Eu aceito ser contatado via WhatsApp.</p>
@@ -101,28 +101,54 @@
   </footer>
 
   <script>
-    $(document).ready(function() {
-            // Quando qualquer botão de rádio for clicado
-            $('input[name="nome"]').click(function() {
-                // Obtenha o valor do botão de rádio selecionado
-                var metodoPagamento = $('input[name="nome"]:checked').val();
+  document.addEventListener("DOMContentLoaded", function() {
+        var botaoCadastrar = document.querySelector('.btn');
+      botaoCadastrar.addEventListener('click', function(event) {
+        var mensagensErro = document.querySelectorAll('.error-message');
+      mensagensErro.forEach(function(mensagemErro) {
+        mensagemErro.parentNode.removeChild(mensagemErro);
+    });
 
-                // Atualize o conteúdo do <span> na div .card-header
-                $('.card-header span').text(metodoPagamento);
-            });
-        });
+    var inputs = document.querySelectorAll('input');
+    var vazio = false;
 
-        function atualizarCampos() {
-            // Obtenha os valores digitados nos campos de entrada
-            var nome = document.getElementById('nome').value;
-            var numero = document.getElementById('numero').value;
-            var validade = document.getElementById('validade').value;
+    inputs.forEach(function(input) {
+      if (input.value === '') {
+        vazio = true;
+        var mensagemErro = document.createElement('p');
+        mensagemErro.textContent = '*Campo obrigatório';
+        mensagemErro.classList.add('error-message');
+        mensagemErro.style.fontSize = '0.8rem';
+        mensagemErro.style.color = 'yellow';
+        input.parentNode.appendChild(mensagemErro);
+      }
+    });
 
-            // Atualize os campos dentro da div .sc-eTNRI.jBklft
-            document.querySelector('.sc-eTNRI.jBklft .nome').textContent = nome;
-            document.querySelector('.sc-eTNRI.jBklft .numero').textContent = '**** **** **** ' + numero.slice(-4);
-            document.querySelector('.sc-eTNRI.jBklft .validade').textContent = validade;
-        }
+      if (vazio) {
+      event.preventDefault();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+      var numeroInput = document.getElementById('numero');
+      numeroInput.addEventListener('input', function(event) {
+        formatarNUMERO(event.target);
+      });
+        formatarNUMERO(numeroInput);
+    });
+    
+    function formatarNUMERO(input) {
+      var numero = input.value.replace(/\D/g, '');
+      numero = numero.substring(0, 11);
+      var numeroFormatado = '';
+      if (numero.length === 11) {
+        numeroFormatado = '(' + numero.substring(0, 2) + ')' + numero.substring(2, 7) + '-' + numero.substring(7, 11);
+      } else {
+        numeroFormatado = numero;
+      }
+      input.value = numeroFormatado;
+    }
   </script>
 </body>
 </html>

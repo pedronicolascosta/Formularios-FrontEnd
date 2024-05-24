@@ -37,7 +37,7 @@
 
   <main>
     <div class="container">
-      <form class="form-table">
+      <form class="form-table" form id="myForm" action="03_cadastro_contato.html" onsubmit="return validateForm()" method="get">
         <h2>Crie uma senha</h2>
         <div class="form-group">
             <label>Senha:</label>
@@ -98,6 +98,50 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var botaoCadastrar = document.querySelector('.btn');
+      botaoCadastrar.addEventListener('click', function(event) {
+        var mensagensErro = document.querySelectorAll('.error-message');
+      mensagensErro.forEach(function(mensagemErro) {
+        mensagemErro.parentNode.removeChild(mensagemErro);
+    });
+
+      var inputs = document.querySelectorAll('input');
+      var vazio = false;
+
+    inputs.forEach(function(input) {
+      if (input.value === '') {
+        vazio = true;
+        var mensagemErro = document.createElement('p');
+        mensagemErro.textContent = '*Campo obrigatório';
+        mensagemErro.classList.add('error-message');
+        mensagemErro.style.fontSize = '0.8rem';
+        mensagemErro.style.color = 'yellow';
+        input.parentNode.appendChild(mensagemErro);
+      }
+    });
+      var senha1 = document.getElementById('senha1').value;
+      var senha2 = document.getElementById('senha2').value;
+
+      if (senha1 !== senha2) {
+        var mensagemErro = document.createElement('p');
+        mensagemErro.textContent = '*As senhas não coincidem';
+        mensagemErro.classList.add('error-message');
+        mensagemErro.style.fontSize = '0.8rem';
+        mensagemErro.style.color = 'yellow';
+
+        var senha2Input = document.getElementById('senha2');
+        senha2Input.parentNode.appendChild(mensagemErro);
+
+        event.preventDefault();
+      }
+
+      if (vazio) {
+        event.preventDefault();
+      }
+    });
+  });
+  </script>
 </body>
 </html>
