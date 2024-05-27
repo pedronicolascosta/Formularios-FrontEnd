@@ -3,7 +3,7 @@
 ### Telas de Formulários HTML, CSS e JavaScript
 <br>
 --> Tela inicial
-![image](https://github.com/pedronicolascosta/Formularios-FrontEnd/assets/79856294/7b49c3bc-cc1b-46d7-93d7-2e0625390988)
+![image](https://github.com/pedronicolascosta/Formularios-FrontEnd/assets/79856294/3b6d0c4a-f2f8-4d50-a76a-fe1f6a9aedd4)
 
 
 --> Cadastro Inicial
