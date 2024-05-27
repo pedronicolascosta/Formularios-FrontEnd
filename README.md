@@ -1,9 +1,9 @@
 # Formularios-FrontEnd
 ## https://pedronicolascosta.github.io/Formularios-FrontEnd/AguaNaBoca/index.html
 ### Telas de Formulários HTML, CSS e JavaScript
-<br>
+
 --> Tela inicial
-![image](https://github.com/pedronicolascosta/Formularios-FrontEnd/assets/79856294/3b6d0c4a-f2f8-4d50-a76a-fe1f6a9aedd4)
+![image](https://github.com/pedronicolascosta/Formularios-FrontEnd/assets/79856294/3b6d0c4a-f2f8-4d50-a76a-fe1f6a9aedd4).
 
 
 --> Cadastro Inicial
